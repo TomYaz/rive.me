@@ -25,4 +25,4 @@ dist-ssr
 
 # DO NOT TOUCH - removes firebase data from github, especially prod!
 # Touch and I will commit murder 
-src/Firebase/Firebase_data.js
+**/Firebase_data.js
