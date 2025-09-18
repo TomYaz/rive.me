@@ -3,5 +3,5 @@
 
 export const firebaseConfig = {
 
-  test
+  test2
 };
