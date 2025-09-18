@@ -1,0 +1,156 @@
+.Signup {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    background-color: #0e0e10;
+    align-items: center;
+    justify-content: center;
+}
+
+.Signup-rive {
+    font-family: f-logo;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.Signup-rive-underline {
+    width: 50%;
+    height: 2px;
+    background-color: #0e0e10;
+    margin: 10px 0px;
+}
+
+.Signup-form-container {
+    width: 500px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 10px 20px 30px 20px;
+    animation: form-appear 1s;
+}
+
+@keyframes form-appear {
+    0% {
+        opacity: 0;
+        margin-right: 200px;
+    }
+
+    100% {
+        opacity: 1;
+        margin-right: 0px;
+    }
+}
+
+.Signup-form-title {
+    font-family: f-light;
+    font-size: 34px;
+    color: black;
+    margin: 30px 0px 0px 0px;
+}
+
+.Signup-form-subtitle {
+    font-family: f-light;
+    font-size: 16px;
+    color: black;
+    margin: 10px 0px 20px 0px;
+}
+
+.Signup-form-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.Signup-form-label {
+    font-family: f-bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.Signup-form-inputfield-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Signup-form-input {
+    font-family: f-reg;
+    border: 1px solid lightgrey;
+    padding: 15px 10px;
+    border-radius: 8px;
+    outline: none;
+    transition: .2s ease-out;
+    width: 100%;
+}
+
+.Signup-form-input:focus {
+    border: 1px solid black;
+}
+
+.seePassword-icon {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+
+.secondPassIcon {
+    bottom: 40px;
+}
+
+.Signup-error-text {
+    font-family: f-reg;
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+    animation: error-fade .5s ease-out;
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+}
+
+@keyframes error-fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.Signup-form-submit {
+    background-color: #0e0e10;
+    color: white;
+    font-family: f-light;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-size: 14px;
+    width: 100%;
+    transition: .3s;
+    margin: 15px 0px;
+}
+
+.Signup-form-submit:hover {
+    cursor: pointer;
+    background-color: #7b63e3;
+}
+
+.Signup-form-signin {
+    font-family: f-light;
+    font-size: 14px;
+}
+
+.Signup-form-signin-highlighted {
+    color: #7b63e3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.Signup-image {
+    width: 150px;
+    margin: 0px 50px;
+}
