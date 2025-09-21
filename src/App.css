@@ -1,1 +1,124 @@
+/* Main apge CSS */
 
+.App {
+    width: 100dvw;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    flex-direction: column;
+}
+
+.App-first-div {
+    width: 100dvw;
+    height: 100dvh;
+    background-image: linear-gradient(#0e0e10, #0e0e10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.App-first-div-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.App-text {
+    font-family: f-logo;
+    color: white;
+    font-size: 52px;
+    width: 500px;
+    text-align: left;
+    animation: text1Appear 1.5s forwards;
+    border: 1px solid white;
+    padding: 20px;
+}
+
+.App-subtext {
+    font-family: f-light;
+    font-size: 18px;
+    color: white;
+    animation: riveAppear 2s forwards;
+}
+
+.App-subtext-highlighted {
+    font-family: f-bold;
+    text-decoration: underline;
+}
+
+.App-rive-container {
+    animation: riveAppear 1.5s forwards;
+}
+
+@keyframes riveAppear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes text1Appear {
+    0% {
+        margin-left: 0px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: 50px;
+        opacity: 1;
+    }
+}
+
+.App-rive {
+    font-family: f-logo;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.App-rive-underline {
+    width: 200px;
+    height: 2px;
+    background-color: #ffffff;
+    margin: 10px 0px;
+}
+
+/* Header CSS */
+
+.Header {
+    width: 100dvw;
+    position: fixed;
+    top: 0;
+    padding: 20px 0px;
+    display: flex;
+}
+
+.Header-logo {
+    width: 50px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.Header-button {
+    justify-self: flex-end;
+    background-color: white;
+    font-family: f-reg;
+    border-radius: 10px;
+    border: none;
+    padding: 12px 20px;
+    right: 50px;
+    position: absolute;
+    font-size: 16px;
+    transition: .2s;
+}
+
+.Header-button:hover {
+    cursor: pointer;
+    opacity: .7;
+}

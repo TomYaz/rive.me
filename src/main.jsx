@@ -8,6 +8,7 @@ import './index.css';
 import App from "./App";
 import Error from "./Screens/Error";
 import Signup from "./Screens/Signup";
+import Login from "./Screens/Login";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />
+  },
+  {
+    path: "/login",
+    element: <Login />
   },
   {
     path: "*",

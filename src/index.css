@@ -1,7 +1,19 @@
 /* General variables */
 
-html body { margin: 0 !important; padding: 0 !important; }
-#root { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+html body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#root {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+img {
+  user-select: none;
+}
 
 /* Fonts */
 

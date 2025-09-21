@@ -1,13 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getApps, initializeApp } from "firebase/app";
 import { firebaseConfig } from "./Firebase_data"; // dangerous file, keep away from github
-
-
-const firebaseConfig = {
-    firebaseConfig
-};
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, } from "firebase/auth";
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+
+export async function signIn(email, password) {
+    //await setPersistence(auth, browserLocalPersistence); // optional, keeps session after refresh
+    signInWithEmailAndPassword(getAuth(app), email, password)
+}
