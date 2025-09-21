@@ -89,6 +89,14 @@
     margin: 10px 0px;
 }
 
+.App-signup-button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: f-reg;
+}
+
 /* Header CSS */
 
 .Header {

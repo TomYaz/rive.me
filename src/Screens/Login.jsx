@@ -29,7 +29,7 @@ function Login() {
             const cred = await signIn(email, password);
             console.log("Signed in:", cred);
             // e.g. navigate to your app home/dashboard
-            navigate("/");
+            navigate("/console"); // SWITCH TO NAVIGATE TO CONSOLE
         } catch (err) { // handle error here! OVERLAY
             console.error(err.code, err.message);
             setErrMsg(
@@ -50,7 +50,7 @@ function Login() {
         const off = onAuthStateChanged(getAuth(app), async (user) => {
             if (user) {
                 // optional: await user.getIdToken(); // if you need the token now
-                navigate("/"); // or wherever you want to send signed-in users
+                navigate("/console"); // or wherever you want to send signed-in users
             }
         });
         return off; // cleanup the listener
