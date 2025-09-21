@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# DO NOT TOUCH - removes firebase data from github, especially prod!
+# Touch and I will commit murder 
+**/Firebase_data.js
