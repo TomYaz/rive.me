@@ -10,25 +10,39 @@ import { BsSave } from "react-icons/bs"
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import { LuScanSearch } from "react-icons/lu"
 import { SlSettings } from "react-icons/sl"
+import { Dashboard, NewSearch } from './ConsoleTabs/ConsoleTabs'
 
 function Console() {
 
+    /* Triggers for setting active view of console */
+    const [consoleActive, setConsoleActive] = useState(true);
+    const [newSearchActive, setNewSearchActive] = useState(false);
+    const [newProjectActive, setNewProjectActive] = useState(false);
+    const [projectseActive, setProjectsActive] = useState(false);
+    const [savedReActive, setSavedReActive] = useState(false);
+    const [settingsActive, setSettingsActive] = useState(false);
+
+
     useEffect(() => {
-        document.title = 'rive | Console'
     })
 
-    const navigate = useNavigate();
 
     return (
         <div className='Console'>
             <ConsoleTopBar />
-            <ConsoleLeftMenu />
+            <ConsoleLeftMenu
+                consoleActive={consoleActive} setConsoleActive={setConsoleActive}
+                newSearchActive={newSearchActive} setNewSearchActive={setNewSearchActive}
+                newProjectActive={newProjectActive} setNewProjectActive={setNewProjectActive}
+                projectseActive={projectseActive} setProjectsActive={setProjectsActive}
+                savedReActive={savedReActive} setSavedReActive={setSavedReActive}
+                settingsActive={settingsActive} setSettingsActive={setSettingsActive}
+
+            />
 
             <div className='Console-main-container'>
-                <h1 className='Console-title'>Console</h1>
-                <div className='Console-container-one'>
-                    <h3 className='Console-container-header'>Latest projects</h3>
-                </div>
+                {consoleActive && <Dashboard />}
+                {newSearchActive && <NewSearch />}
             </div>
         </div>
     )
@@ -50,62 +64,55 @@ function ConsoleTopBar() {
     )
 }
 
-function ConsoleLeftMenu() {
+function ConsoleLeftMenu(props) {
 
-    /* Triggers for setting active view of console */
-    const [consoleActive, setConsoleActive] = useState(true);
-    const [newSearchActive, setNewSearchActive] = useState(false);
-    const [newProjectActive, setNewProjectActive] = useState(false);
-    const [projectseActive, setProjectsActive] = useState(false);
-    const [savedReActive, setSavedReActive] = useState(false);
-    const [settingsActive, setSettingsActive] = useState(false);
 
     const triggerActive = (active) => {
 
-        setConsoleActive(false);
-        setNewSearchActive(false);
-        setNewProjectActive(false);
-        setProjectsActive(false);
-        setSavedReActive(false);
-        setSettingsActive(false);
+        props.setConsoleActive(false);
+        props.setNewSearchActive(false);
+        props.setNewProjectActive(false);
+        props.setProjectsActive(false);
+        props.setSavedReActive(false);
+        props.setSettingsActive(false);
 
-        if (active == 'console') { setConsoleActive(true) }
-        if (active == 'newSearch') { setNewSearchActive(true) }
-        if (active == 'newProject') { setNewProjectActive(true) }
-        if (active == 'projects') { setProjectsActive(true) }
-        if (active == 'saveRe') { setSavedReActive(true) }
-        if (active == 'settings') { setSettingsActive(true) }
+        if (active == 'console') { props.setConsoleActive(true) }
+        if (active == 'newSearch') { props.setNewSearchActive(true) }
+        if (active == 'newProject') { props.setNewProjectActive(true) }
+        if (active == 'projects') { props.setProjectsActive(true) }
+        if (active == 'saveRe') { props.setSavedReActive(true) }
+        if (active == 'settings') { props.setSettingsActive(true) }
     }
 
     return (
         <div className='LeftMenu'>
             <ul>
-                <li className={consoleActive ? 'active' : ''} onClick={() => triggerActive('console')}>
+                <li className={props.consoleActive ? 'active' : ''} onClick={() => triggerActive('console')}>
                     <RxDashboard className='li-icon' />
                     Console
                 </li>
 
                 <div className='LeftMenu-separator' />
 
-                <li className={newSearchActive ? 'active' : ''} onClick={() => triggerActive('newSearch')}>
+                <li className={props.newSearchActive ? 'active' : ''} onClick={() => triggerActive('newSearch')}>
                     <LuScanSearch className='li-icon' />
                     New search
                 </li>
 
-                <li className={newProjectActive ? 'active' : ''} onClick={() => triggerActive('newProject')}>
+                <li className={props.newProjectActive ? 'active' : ''} onClick={() => triggerActive('newProject')}>
                     <FaFolderPlus className='li-icon' />
                     New project
                 </li>
 
                 <div className='LeftMenu-separator' />
 
-                <li className={projectseActive ? 'active' : ''} onClick={() => triggerActive('projects')}>
+                <li className={props.projectseActive ? 'active' : ''} onClick={() => triggerActive('projects')}>
                     <FaRegFolderOpen className='li-icon' />
                     Projects
-                    {projectseActive ? <FaAngleUp className='li-icon-down' /> : <FaAngleDown className='li-icon-down' />}
+                    {props.projectseActive ? <FaAngleUp className='li-icon-down' /> : <FaAngleDown className='li-icon-down' />}
                 </li>
                 {
-                    projectseActive &&
+                    props.projectseActive &&
                     <ul className='sub-menu'>
                         <li>Legal ressources</li>
                         <li>M&A pharma</li>
@@ -113,12 +120,12 @@ function ConsoleLeftMenu() {
                     </ul>
                 }
 
-                <li className={savedReActive ? 'active' : ''} onClick={() => triggerActive('saveRe')}>
+                <li className={props.savedReActive ? 'active' : ''} onClick={() => triggerActive('saveRe')}>
                     <BsSave className='li-icon' />
                     Saved ressources
                 </li>
 
-                <li className={settingsActive ? 'active' : ''} onClick={() => triggerActive('settings')}>
+                <li className={props.settingsActive ? 'active' : ''} onClick={() => triggerActive('settings')}>
                     <SlSettings className='li-icon' />
                     Settings
                 </li>
@@ -130,3 +137,5 @@ function ConsoleLeftMenu() {
 }
 
 export default Console;
+
+
