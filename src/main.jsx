@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    path: "/console",
+    path: "/console/*",
     element: <Console />
   },
   {

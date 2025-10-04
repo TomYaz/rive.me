@@ -3,28 +3,43 @@ import './Console.css'
 
 import logo from './assets/images/rive logo 2.png'
 
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router'
 import { RxDashboard } from "react-icons/rx"
-import { FaRegFolderOpen, FaFolderPlus, FaRegUserCircle } from "react-icons/fa"
+import { FaRegFolderOpen, FaFolderPlus } from "react-icons/fa"
 import { BsSave } from "react-icons/bs"
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import { LuScanSearch } from "react-icons/lu"
 import { SlSettings } from "react-icons/sl"
-import { Dashboard, NewSearch } from './ConsoleTabs/ConsoleTabs'
+import { Dashboard, NewProject, NewSearch } from './ConsoleTabs/ConsoleTabs'
 
 function Console() {
 
     /* Triggers for setting active view of console */
-    const [consoleActive, setConsoleActive] = useState(true);
+    const [consoleActive, setConsoleActive] = useState(false);
     const [newSearchActive, setNewSearchActive] = useState(false);
     const [newProjectActive, setNewProjectActive] = useState(false);
     const [projectseActive, setProjectsActive] = useState(false);
     const [savedReActive, setSavedReActive] = useState(false);
     const [settingsActive, setSettingsActive] = useState(false);
 
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
-    })
+
+        if (location.pathname == '/console') { setConsoleActive(true) }
+        else if (location.pathname == '/console/new-search') { setNewSearchActive(true) }
+        else if (location.pathname == '/console/new-project') { setNewProjectActive(true) }
+        else if (location.pathname == '/console/projects') { setProjectsActive(true) }
+        else if (location.pathname == '/console/saved-resources') { setSavedReActive(true) }
+        else if (location.pathname == '/console/settings') { setSettingsActive(true) }
+        else {
+            navigate('/console')
+            setConsoleActive(true)
+        }
+
+
+    }, [location])
 
 
     return (
@@ -43,6 +58,7 @@ function Console() {
             <div className='Console-main-container'>
                 {consoleActive && <Dashboard />}
                 {newSearchActive && <NewSearch />}
+                {newProjectActive && <NewProject />}
             </div>
         </div>
     )
@@ -66,6 +82,7 @@ function ConsoleTopBar() {
 
 function ConsoleLeftMenu(props) {
 
+    const navigate = useNavigate();
 
     const triggerActive = (active) => {
 
@@ -76,12 +93,31 @@ function ConsoleLeftMenu(props) {
         props.setSavedReActive(false);
         props.setSettingsActive(false);
 
-        if (active == 'console') { props.setConsoleActive(true) }
-        if (active == 'newSearch') { props.setNewSearchActive(true) }
-        if (active == 'newProject') { props.setNewProjectActive(true) }
-        if (active == 'projects') { props.setProjectsActive(true) }
-        if (active == 'saveRe') { props.setSavedReActive(true) }
-        if (active == 'settings') { props.setSettingsActive(true) }
+        if (active == 'console') {
+            props.setConsoleActive(true)
+            navigate('/console')
+
+        }
+        if (active == 'newSearch') {
+            props.setNewSearchActive(true)
+            navigate('/console/new-search')
+        }
+        if (active == 'newProject') {
+            props.setNewProjectActive(true)
+            navigate('/console/new-project')
+        }
+        if (active == 'projects') {
+            props.setProjectsActive(true)
+            navigate('/console/projects')
+        }
+        if (active == 'saveRe') {
+            props.setSavedReActive(true)
+            navigate('/console/saved-resources')
+        }
+        if (active == 'settings') {
+            props.setSettingsActive(true)
+            navigate('/console/settings')
+        }
     }
 
     return (
@@ -122,7 +158,7 @@ function ConsoleLeftMenu(props) {
 
                 <li className={props.savedReActive ? 'active' : ''} onClick={() => triggerActive('saveRe')}>
                     <BsSave className='li-icon' />
-                    Saved ressources
+                    Saved resources
                 </li>
 
                 <li className={props.settingsActive ? 'active' : ''} onClick={() => triggerActive('settings')}>
