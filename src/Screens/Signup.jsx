@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { FiEye, FiEyeOff } from "react-icons/fi"
 
 import logo from '../assets/images/rive logo 2.png'
-import { createUser, auth } from '../Firebase/Firebase'
+import { createUser, auth, isUserLoggedIn } from '../Firebase/Firebase'
 import { Loader } from './Login'
 import { onAuthStateChanged } from 'firebase/auth'
 
@@ -20,6 +20,7 @@ function Signup() {
 
     /* Password triggers for DOM */
     const [seePassword, setSeePassword] = useState(false);
+    const [seePasswordConstraints, setSeePasswordConstraints] = useState(false);
     const [seeConfirmPassword, setSeeConfirmPassword] = useState(false);
 
     /* Loaders */
@@ -35,15 +36,10 @@ function Signup() {
         setLoading(true);
 
         if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) { // verify email validity
-            if (password === confirmPassword) { // verify that password and confirmed password match - ADD A PASSWORD REQUIREMENT CHECKER
-                if (fullName.length > 0) {
+            if (password === confirmPassword && /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(password)) { // verify that password and confirmed password match, and password checks regex requirements
+                if (fullName.length > 0 && /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(fullName)) { // verify fullname is not null and letters only
                     try {
-                        createUser(email, password, fullName).then((cred) => {
-                            if (cred) {
-                                console.log('Created new user: ' + cred.user)
-                                navigate('/console')
-                            }
-                        })
+                        var cred = createUser(email, password, fullName)
                     }
                     catch {
                         console.error(err.code, err.message);
@@ -55,6 +51,9 @@ function Signup() {
                         setTimeout(() => {
                             setLoading(false);
                             setHasLoadedOnce(true);
+                            if (cred) {
+                                navigate('/console')
+                            }
                         }, 1000);
                     }
                 }
@@ -64,14 +63,12 @@ function Signup() {
 
 
     useEffect(() => {
-        const off = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // optional: await user.getIdToken(); // if you need the token now
-                navigate("/console"); // or wherever you want to send signed-in users
-            }
-        });
-        return off; // cleanup the listener
-    })
+        async function checkAuth() {
+            const loggedIn = await isUserLoggedIn();
+            if (loggedIn) navigate("/console");
+        }
+        checkAuth();
+    }, [])
 
     return (
         <div className='Signup'>
@@ -88,6 +85,7 @@ function Signup() {
                             <div className='Signup-form-inputfield-container'>
                                 <input id='name' type='text' placeholder='John Doe' className='Signup-form-input' value={fullName} onChange={(e) => setFullName(e.currentTarget.value)} />
                             </div>
+                            {(!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(fullName) && fullName.length > 0) && <span className='Signup-error-text'>Please enter a vaild name (no numbers or special characters).</span>}
                         </div>
                         <div className='Signup-form-input-container'>
                             <label for='email' className='Signup-form-label'>Email</label>
@@ -102,6 +100,7 @@ function Signup() {
                                 <input id='password' type={seePassword ? 'text' : 'password'} placeholder='∙∙∙∙∙∙∙∙∙∙∙∙∙' className='Signup-form-input' value={password} onChange={(e) => setPassword(e.currentTarget.value)} />
                                 {seePassword ? <FiEye className='seePassword-icon' onClick={() => setSeePassword(!seePassword)} /> : <FiEyeOff className='seePassword-icon' onClick={() => setSeePassword(!seePassword)} />}
                             </div>
+                            {(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(password) && password.length > 0) && <span className='Signup-error-text'>Minimum 8 characters, with at one uppercase, a number and a special character. </span>}
                         </div>
                         <div className='Signup-form-input-container'>
                             <label for='password' className='Signup-form-label'>Confirm Password</label>

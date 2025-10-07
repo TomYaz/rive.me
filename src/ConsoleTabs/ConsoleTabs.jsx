@@ -17,16 +17,16 @@ export function Dashboard() {
             <h1 className='ConsoleTabs-title'>Console</h1>
             <div className='Dashboard-container-row'>
                 <div className='Dashboard-container-one'>
-                    <h3 className='Dashboard-container-header'>Latest projects</h3>
+                    <h3 className='Dashboard-container-header'>Recent searches</h3>
                     <div className='Dashboard-inner-container'>
-                        <span className='Dashboard-inner-container-empty-text'>No saved projects found.</span>
+                        <span className='Dashboard-inner-container-empty-text'>No recent searches to display.</span>
                     </div>
                 </div>
 
                 <div className='Dashboard-container-two'>
-                    <h3 className='Dashboard-container-header'>Recent searches</h3>
+                    <h3 className='Dashboard-container-header'>Latest projects</h3>
                     <div className='Dashboard-inner-container'>
-                        <span className='Dashboard-inner-container-empty-text'>No recent searches to display.</span>
+                        <span className='Dashboard-inner-container-empty-text'>No saved projects found.</span>
                     </div>
                 </div>
             </div>
@@ -94,12 +94,14 @@ export function NewSearch() {
                     <option>All resources</option>
                 </select>
 
-                <div className='NewSearch-container'>
-                    <label className='NewSearch-label'>What is the purpose of this search?</label>
-                    <textarea className='NewSearch-input input-small'
-                        placeholder='Specifying what you need the resources for can help focus of the search. For example: I"m doing a phd thesis on molecular biology.'
-                    />
-                </div>
+                {/* Might take out - asking too much of user ?
+                    <div className='NewSearch-container'>
+                        <label className='NewSearch-label'>What is the purpose of this search?</label>
+                        <textarea className='NewSearch-input input-small'
+                            placeholder='Specifying what you need the resources for can help focus of the search. For example: I"m doing a phd thesis on molecular biology.'
+                        />
+                    </div>
+                */ }
 
                 <button className='NewSearch-submit'>Search</button>
             </div>
@@ -112,11 +114,6 @@ export function NewProject() {
 
     const [tagArray, setTagArray] = useState(projectTypes);
     const [projectColoursArray, setProjectColoursArray] = useState(projectColours);
-
-    useEffect(() => {
-
-    })
-
 
     return (
         <div className='ConsoleTabs'>
@@ -155,7 +152,7 @@ export function NewProject() {
                 </div>
 
                 <div className='NewProject-container'>
-                    <label className='NewProject-label'>Pick a tab color tab for your project</label>
+                    <label className='NewProject-label'>Add a color tab for your project</label>
                     <div className='NewProject-tags-container'>
                         {projectColoursArray.map((r, i) => (
                             <div
@@ -165,10 +162,11 @@ export function NewProject() {
                                     setProjectColoursArray(prev =>
                                         prev.map((item, idx) => ({
                                             ...item,
-                                            active: idx === i,
+                                            active: idx === i, 
                                         }))
                                     );
                                 }}
+
                             >
                                 <div
                                     className='NewProject-color-tag-inside'

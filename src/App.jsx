@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 
 import logo from './assets/images/rive logo 2.png'
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './Firebase/Firebase';
 
 
 function App() {

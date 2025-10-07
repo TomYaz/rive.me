@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { FiEye, FiEyeOff } from "react-icons/fi"
 
 import logo from '../assets/images/rive logo 2.png'
-import { signIn, auth } from '../Firebase/Firebase';
+import { signIn, auth, isUserLoggedIn } from '../Firebase/Firebase';
 import { onAuthStateChanged } from 'firebase/auth'
 
 function Login() {
@@ -54,13 +54,11 @@ function Login() {
 
 
     useEffect(() => {
-        const off = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // optional: await user.getIdToken(); // if you need the token now
-                navigate("/console"); // or wherever you want to send signed-in users
-            }
-        });
-        return off; // cleanup the listener
+        async function checkAuth() {
+            const loggedIn = await isUserLoggedIn();
+            if (loggedIn) navigate("/console");
+        }
+        checkAuth();
     })
 
     return (

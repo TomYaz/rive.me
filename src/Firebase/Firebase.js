@@ -1,12 +1,29 @@
 // Import the functions you need from the SDKs you need
-import { getApps, initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 import { firebaseConfig } from "./Firebase_data"; // dangerous file, keep away from github
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 
 // Initialize Firebase
 export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
+/*
+ A function to check the user status.
+ - Returns true if user session is found
+ - Return false if no user session is found
+*/
+export function isUserLoggedIn() {
+  return new Promise((resolve) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      unsub(); // stop listening after first result
+      resolve(!!user); // true if user exists, false otherwise
+    });
+  });
+}
+
+/*
+ A function to sign in the user with email and password.
+*/
 export async function signIn(email, password) {
     try {
         const cred = await signInWithEmailAndPassword(auth, email, password);
@@ -18,6 +35,10 @@ export async function signIn(email, password) {
     }
 }
 
+/*
+ A function to create a new user with email and password.
+ Also sets users displayName.
+*/
 export async function createUser(email, password, name) {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -42,8 +63,10 @@ export async function createUser(email, password, name) {
         });
 }
 
-
-export function getUserDisplayName() {
+/*
+ A function to retrieve a users displayName.
+*/
+export async function getUserDisplayName() {
     return new Promise((resolve, reject) => {
         try {
             const unsubscribe = onAuthStateChanged(
