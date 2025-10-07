@@ -89,6 +89,7 @@
     color: white;
     margin-bottom: 15px;
     display: flex;
+    font-size: 17px;
 
 }
 
@@ -107,12 +108,12 @@
     color: white;
     padding: 20px;
     font-family: f-light;
-    height: 150px;
+    height: 100px;
     outline: none;
 }
 
 .input-small {
-    height: 75px;
+    height: 50px;
 }
 
 .NewSearch-tags-container {
@@ -134,11 +135,14 @@
     width: fit-content;
     cursor: pointer;
     border: 1px solid rgb(65, 65, 65);
-    background-color: rgba(71, 71, 71, 0.1);
+    background-color: rgba(71, 71, 71, 0.2);
+    z-index: 999;
+    user-select: none;
 }
 
 .NewSearch-checkmark-label {
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .NewSearch-separator {
@@ -201,7 +205,7 @@
     border: 1px solid rgb(65, 65, 65);
     border-radius: 8px;
     resize: none;
-    background-color: rgba(71, 71, 71, 0.1);
+    background-color: rgba(71, 71, 71, 0.2);
     color: white;
     padding: 15px 20px;
     font-family: f-light;
@@ -216,24 +220,24 @@
 }
 
 .NewProject-tag {
-    color: white;
+    color: rgba(255, 255, 255, 0.4);
     font-family: f-reg;
     border: 1px solid rgb(65, 65, 65);
     border-radius: 8px;
     padding: 15px 20px;
     font-size: 14px;
     cursor: pointer;
-    background-color: rgba(71, 71, 71, 0.1);
+    background-color: rgba(71, 71, 71, 0.2);
     user-select: none;
     transition: .2s;
 }
 
 .tag-active {
     border: 1px solid white;
+    color: white;
 }
 
 .NewProject-color-tag {
-    color: white;
     font-family: f-reg;
     border: 1px solid rgb(65, 65, 65);
     border-radius: 5px;

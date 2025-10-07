@@ -45,7 +45,7 @@ export function Dashboard() {
 export function NewSearch() {
 
     const [infoOverlay, showInfoOverlay] = useState(false);
-
+    const [tagArray, setTagArray] = useState(resourceTypes);
 
     useEffect(() => {
 
@@ -66,19 +66,28 @@ export function NewSearch() {
             </div>
 
             <div className='NewSearch-container'>
-                <label className='NewSearch-label'>Resource type
-                    <LuInfo className='NewSearch-label-icon' onClick={() => showInfoOverlay(true)} />
+                <label className='NewSearch-label'>Resource categories
+
                 </label>
 
                 <div className='NewSearch-tags-container'>
-                    {resourceTypes.map((r) => (
-                        <div className="NewSearch-tag" key={r.name}>
+                    {tagArray.map((r, i) => (
+                        <div
+                            key={i} className={r.active ? 'NewSearch-tag tag-active' : 'NewSearch-tag'}
+                            onClick={() => {
+                                setTagArray(prev =>
+                                    prev.map((item, idx) =>
+                                        idx === i ? { ...item, active: !item.active } : item
+                                    )
+                                );
+                            }}>
                             {r.icon}
                             <label className='NewSearch-checkmark-label'>{r.name}</label>
                         </div>
                     ))}
                 </div>
                 <div className='NewSearch-separator' />
+                <label className='NewSearch-label'> Select vetting mode<LuInfo className='NewSearch-label-icon' onClick={() => showInfoOverlay(true)} /></label>
                 <select className='NewSearch-dropdown' name='search-options' >
                     <option>Vetted resources only</option>
                     <option>Un-vetted resources only</option>

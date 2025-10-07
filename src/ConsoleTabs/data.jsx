@@ -5,11 +5,11 @@ import { HiDocumentReport, HiOutlineDocumentReport } from "react-icons/hi";
 import { CgWebsite } from "react-icons/cg";
 
 export const resourceTypes = [
-  { name: "News articles", icon: <FaRegNewspaper /> },
-  { name: "Legal documents", icon: <TbGavel /> },
-  { name: "Website articles", icon: <CgWebsite /> },
-  { name: "Research papers", icon: <BsArchiveFill /> },
-  { name: "Audits/Reports", icon: <HiOutlineDocumentReport /> },
+  { name: "News articles", icon: <FaRegNewspaper />, active: false },
+  { name: "Legal documents", icon: <TbGavel />, active: false },
+  { name: "Website articles", icon: <CgWebsite />, active: false },
+  { name: "Research papers", icon: <BsArchiveFill />, active: false },
+  { name: "Audits/Reports", icon: <HiOutlineDocumentReport />, active: false },
 ];
 
 export const projectTypes = [
@@ -21,7 +21,7 @@ export const projectTypes = [
 ]
 
 export const projectColours = [
-  { name: '', color: '#0e425e', active: false },
-  { name: '', color: '#085b87', active: false },
-  { name: '', color: '#085ba4', active: false },
+  { name: 'color1', color: '#0e425e', active: false },
+  { name: 'color2', color: '#085b87', active: false },
+  { name: 'color3', color: '#085ba4', active: false },
 ]

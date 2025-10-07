@@ -11,6 +11,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import { LuScanSearch } from "react-icons/lu"
 import { SlSettings } from "react-icons/sl"
 import { Dashboard, NewProject, NewSearch } from './ConsoleTabs/ConsoleTabs'
+import { getUserDisplayName } from './Firebase/Firebase'
 
 function Console() {
 
@@ -24,6 +25,7 @@ function Console() {
 
     const location = useLocation();
     const navigate = useNavigate();
+
 
     useEffect(() => {
 
@@ -68,12 +70,24 @@ function ConsoleTopBar() {
 
     const navigate = useNavigate();
 
+    /* Top Bar variables */
+    const [displayName, setDisplayName] = useState('')
+
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            const name = await getUserDisplayName();
+            if (alive) setDisplayName(name);
+        })();
+        return () => { alive = false; };
+    }, []);
+
     return (
         <div className='TopBar'>
             <img src={logo} className='TopBar-logo' onClick={() => navigate('/')} />
             <div className='TopBar-right-container'>
                 <span className='TopBar-user'>
-                    <span className='TopBar-user-underline'> TomYaz </span>
+                    <span className='TopBar-user-underline'> {displayName} </span>
                 </span>
             </div>
         </div>
