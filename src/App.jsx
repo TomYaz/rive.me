@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 
 import logo from './assets/images/rive logo 2.png'
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './Firebase/Firebase';
 
 
 function App() {
+
+  const navigate = useNavigate();
 
   return (
     <div className='App'>
@@ -20,9 +24,9 @@ function App() {
         </div>
         <p className='App-subtext'>We provide an <span className='App-subtext-highlighted'>AI powered</span> tool to help you find relevant and reliable ressources for any research project.</p>
 
-        <button className=''>Sign up for rive</button>
-      
-      
+        <button className='App-signup-button' onClick={() => navigate('/signup')}>Sign up for rive</button>
+
+
       </div>
     </div>
   )
@@ -30,13 +34,12 @@ function App() {
 
 function Header() {
 
-
   const navigate = useNavigate();
 
   return (
     <div className='Header'>
       <img src={logo} className='Header-logo' onClick={() => navigate('/')} />
-      <button className='Header-button'>Rive console</button>
+      <button className='Header-button' onClick={() => navigate('/console')}>Rive console</button>
     </div>
   )
 }

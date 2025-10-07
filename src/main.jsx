@@ -9,6 +9,7 @@ import App from "./App";
 import Error from "./Screens/Error";
 import Signup from "./Screens/Signup";
 import Login from "./Screens/Login";
+import Console from "./Console";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/console/*",
+    element: <Console />
   },
   {
     path: "*",

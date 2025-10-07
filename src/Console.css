@@ -1,0 +1,116 @@
+/* Console */
+
+.Console {
+    width: 100dvw;
+    height: 100dvh;
+    background-color: #1a1a20;
+}
+
+.Console-main-container {
+    width: calc(100% - 255px);
+    /* Calculate minus left menu width */
+    position: absolute;
+    right: 10px;
+    height: calc(100% - 70px);
+    /* Calculate minus top bar height */
+}
+
+/* Top Bar */
+
+.TopBar {
+    position: relative;
+    width: 100dvw;
+    height: 50px;
+    /* To be changed with top of left menu */
+    border-bottom: 1.5px solid rgb(65, 65, 65);
+    background-color: rgba(71, 71, 71, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.TopBar-logo {
+    height: 60%;
+    cursor: pointer;
+    margin-left: 20px;
+    /* To be made equal to TopBar-right-container right */
+}
+
+.TopBar-right-container {
+    position: absolute;
+    right: 20px;
+}
+
+.TopBar-user {
+    font-family: f-light;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TopBar-user-underline {
+    border-bottom: 1px solid white;
+    font-family: f-reg;
+}
+
+/* Left Menu */
+
+.LeftMenu {
+    padding: 20px;
+    border-right: 1.5px solid rgb(65, 65, 65);
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 50px;
+    /* To be changed with height of top bar */
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    color: white;
+    font-family: f-light;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.li-icon {
+    margin-right: 10px;
+}
+
+.li-icon-down {
+    position: absolute;
+    right: 10px;
+}
+
+.active {
+    color: white;
+    background-color: rgba(209, 211, 217, 0.05);
+}
+
+.sub-menu {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.sub-menu li {
+    margin: 0;
+}
+
+.LeftMenu-separator {
+    width: 80%;
+    height: 1px;
+    background-color: rgb(65, 65, 65);
+    margin-bottom: 15px;
+}

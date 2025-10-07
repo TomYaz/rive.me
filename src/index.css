@@ -27,12 +27,15 @@ img {
   src: url('./assets/fonts/figtree/Figtree-Regular.ttf');
 }
 
-
 @font-face {
   font-family: f-light;
   src: url('./assets/fonts/figtree/Figtree-Light.ttf');
 }
 
+@font-face {
+  font-family: f-lightI;
+  src: url('./assets/fonts/figtree/Figtree-LightItalic.ttf');
+}
 
 @font-face {
   font-family: f-med;
