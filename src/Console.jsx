@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import './Console.css'
 
 import logo from './assets/images/rive logo 2.png'
+import logo2 from './assets/images/rive logo 1.png'
 
 import { useNavigate, useLocation } from 'react-router'
-import { RxDashboard } from "react-icons/rx"
-import { FaRegFolderOpen, FaFolderPlus } from "react-icons/fa"
+import { FaFolderPlus } from "react-icons/fa"
 import { BsSave } from "react-icons/bs"
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import { LuScanSearch } from "react-icons/lu"
 import { SlSettings } from "react-icons/sl"
-import { Dashboard, NewProject, NewSearch } from './ConsoleTabs/ConsoleTabs'
+import { Dashboard, NewProject, NewSearch, Settings } from './ConsoleTabs/ConsoleTabs'
 import { getUserDisplayName, isUserLoggedIn } from './Firebase/Firebase'
 
 function Console() {
@@ -34,6 +34,7 @@ function Console() {
             if (!loggedIn) navigate("/login");
         }
         checkAuth();
+
 
         if (location.pathname == '/console') { setConsoleActive(true) }
         else if (location.pathname == '/console/new-search') { setNewSearchActive(true) }
@@ -66,6 +67,7 @@ function Console() {
                 {consoleActive && <Dashboard />}
                 {newSearchActive && <NewSearch />}
                 {newProjectActive && <NewProject />}
+                {settingsActive && <Settings />}
             </div>
         </div>
     )
@@ -89,7 +91,7 @@ function ConsoleTopBar() {
 
     return (
         <div className='TopBar'>
-            <img src={logo} className='TopBar-logo' onClick={() => navigate('/')} />
+            <img src={localStorage.getItem('theme') == 'dark' ? logo : logo2} className='TopBar-logo' onClick={() => navigate('/')} />
             <div className='TopBar-right-container'>
                 <span className='TopBar-user'>
                     <span className='TopBar-user-underline'> {displayName} </span>
@@ -145,12 +147,16 @@ function ConsoleLeftMenu(props) {
     return (
         <div className='LeftMenu'>
             <ul>
+                { /* UNCOMMENT IF WE KEEP THE CONSOLE TAB
+                
                 <li className={props.consoleActive ? 'active' : ''} onClick={() => triggerActive('console')}>
                     <RxDashboard className='li-icon' />
                     Console
                 </li>
 
-                <div className='LeftMenu-separator' />
+                <div className='LeftMenu-separator' /> 
+
+                */}
 
                 <li className={props.newSearchActive ? 'active' : ''} onClick={() => triggerActive('newSearch')}>
                     <LuScanSearch className='li-icon' />
@@ -168,7 +174,7 @@ function ConsoleLeftMenu(props) {
                     <BsSave className='li-icon' />
                     Saved resources
                 </li>
-                
+
                 <div className='LeftMenu-separator' />
 
                 <li className='' onClick={() => props.setProjectsActive(!props.projectseActive)}>

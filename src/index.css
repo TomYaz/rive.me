@@ -15,6 +15,31 @@ img {
   user-select: none;
 }
 
+/* Dark - Light mode css*/
+
+:root {
+  --bg: #f6f6f6;
+  --bg-dimed: #c0c0c030;
+  --text: #1a1a1a;
+  --accent: #4a35aa;
+  --accent-active: #90909030;
+  --borders: #e0dddd;
+  --input-fill: transparent;
+  --input-borders: rgb(163, 163, 163);
+}
+
+[data-theme='dark'] {
+  --bg: #1b1b1d;
+  --bg-dimed: #40404456;
+  --text: #f9f9f9;
+  --accent: #7d68dd;
+  --accent-active: #50505030;
+  --borders: #434343;
+  --input-fill: rgba(71, 71, 71, 0.2);
+  --input-borders: rgb(71, 71, 71);
+
+}
+
 /* Fonts */
 
 @font-face {

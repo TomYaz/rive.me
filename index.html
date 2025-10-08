@@ -5,6 +5,20 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/rive logo 2.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var KEY = "theme";
+        var saved = localStorage.getItem(KEY);
+        var theme = saved
+          || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+        var root = document.documentElement;
+        root.setAttribute("data-theme", theme);        // for CSS variables
+        if (theme === "dark") root.classList.add("dark"); else root.classList.remove("dark"); // for Tailwind (optional)
+      } catch (e) { }
+    })();
+  </script>
   <title>rive | Only reliable data</title>
 </head>
 

@@ -11,12 +11,15 @@
     font-family: f-light;
     color: white;
     font-size: 26px;
+    width: 100%;
+    text-align: center;
 }
 
 .ConsoleTabs-separator {
-    width: 20dvw;
+    width: 60%;
     height: 1px;
     background-color: rgb(65, 65, 65);
+    align-self: center;
 }
 
 /* Dashboard / Home Console */
@@ -77,19 +80,30 @@
 
 /* New Search */
 
-.NewSearch-container {
+.NewSearch-top-container {
     width: 100%;
-    margin-top: 20px;
+    height: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
+.NewSearch-container {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .NewSearch-label {
-    font-family: f-reg;
-    color: white;
+    font-family: f-med;
+    color: var(--text);
     margin-bottom: 15px;
     display: flex;
-    font-size: 17px;
+    font-size: 22px;
 
 }
 
@@ -101,16 +115,15 @@
 
 .NewSearch-input {
     width: 80%;
-    border: 1px solid rgb(65, 65, 65);
+    border: 1px solid var(--input-borders);
     border-radius: 5px;
     resize: none;
-    background-color: rgba(71, 71, 71, 0.2);
-    color: white;
+    background-color: var(--input-fill);
+    color: var(--text);
     padding: 20px;
-    font-family: f-light;
+    font-family: f-reg;
     height: 100px;
     outline: none;
-     filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
 }
 
 .input-small {
@@ -121,11 +134,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .NewSearch-tag {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text);
     font-family: f-reg;
     font-size: 14px;
     padding: 15px 20px;
@@ -135,11 +150,10 @@
     align-items: center;
     width: fit-content;
     cursor: pointer;
-    border: 1px solid rgb(65, 65, 65);
-    background-color: rgba(71, 71, 71, 0.2);
-    z-index: 999;
+    border: 1px solid var(--input-borders);
+    background-color: var(--input-fill);
     user-select: none;
-    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+    transition: .2s;
 }
 
 .NewSearch-checkmark-label {
@@ -150,67 +164,86 @@
 .NewSearch-separator {
     width: 40%;
     height: 1px;
-    margin: 20px 0px;
-    background-color: rgb(65, 65, 65);
+    margin: 50px 0px;
+    background-color: var(--input-borders);
 }
 
 .NewSearch-dropdown {
     width: 200px;
-    font-family: f-light;
-    background-color: rgba(71, 71, 71, 0.1);
-    border: 1px solid rgb(65, 65, 65);
-    color: white;
+    font-family: f-med;
+    background-color: var(--input-fill);
+    border: 1px solid var(--input-borders);
+    color: var(--text);
     padding: 10px;
     border-radius: 4px;
 }
 
 .NewSearch-submit {
+    font-size: 22px;
     width: fit-content;
-    padding: 10px 15px;
+    padding: 20px;
     font-family: f-med;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    border-radius: 5px;
+    border-radius: 100%;
     cursor: pointer;
+    background-color: var(--bg-dimed);
+    color: var(--text);
     margin-top: 25px;
+    transition: .2s;
+}
 
+.NewSearch-submit:hover {
+    background-color: var(--accent);
 }
 
 /* New Project */
 
-.NewProject-form-container {}
+.NewProject-top-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 
 .NewProject-container {
     width: 100%;
-    margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .NewProject-label {
-    font-family: f-reg;
-    color: white;
+    font-family: f-med;
+    color: var(--text);
     margin-bottom: 15px;
     display: flex;
-
+    font-size: 22px;
 }
 
 .NewProject-label-icon {
     margin-right: 10px;
     margin-top: 2px;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text);
 }
 
 .NewProject-input {
     width: 70%;
-    border: 1px solid rgb(65, 65, 65);
+    border: 1px solid var(--input-borders);
     border-radius: 8px;
     resize: none;
-    background-color: rgba(71, 71, 71, 0.2);
-    color: white;
+    background-color: var(--input-fill);
+    color: var(--text);
     padding: 15px 20px;
-    font-family: f-light;
+    font-family: f-reg;
     outline: none;
 }
 
@@ -218,33 +251,36 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
 }
 
 .NewProject-tag {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text);
     font-family: f-reg;
-    border: 1px solid rgb(65, 65, 65);
+    border: 1px solid var(--input-borders);
     border-radius: 8px;
     padding: 15px 20px;
     font-size: 14px;
     cursor: pointer;
-    background-color: rgba(71, 71, 71, 0.2);
+    background-color: var(--input-fill);
     user-select: none;
     transition: .2s;
 }
 
 .NewProject-color-tag {
     font-family: f-reg;
-    border: 1px solid rgb(65, 65, 65);
+    border: 1px solid var(--input-borders);
     border-radius: 5px;
     padding: 12px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tag-active {
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--accent);
+    color: var(--accent);
 }
 
 .NewProject-color-tag-inside {
@@ -338,3 +374,5 @@
 br {
     margin-bottom: 10px;
 }
+
+/* Settings */

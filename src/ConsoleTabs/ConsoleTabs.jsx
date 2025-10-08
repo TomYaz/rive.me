@@ -4,6 +4,8 @@ import { projectColours, projectTypes, resourceTypes } from './data.jsx'
 import { LuInfo } from "react-icons/lu"
 import { IoCloseOutline } from "react-icons/io5"
 import { PiNumberCircleOneFill, PiNumberCircleTwoFill, PiNumberCircleThreeFill } from "react-icons/pi"
+import { FaSearch } from "react-icons/fa"
+import { toggleTheme } from "../HelperFunctions.jsx"
 
 export function Dashboard() {
 
@@ -54,56 +56,47 @@ export function NewSearch() {
 
     return (
         <div className='ConsoleTabs'>
+
             {infoOverlay && <OverlayInformation showInfoOverlay={showInfoOverlay} />}
-            <h1 className='ConsoleTabs-title'>Start a new search</h1>
-            <div className='ConsoleTabs-separator' />
 
-            <div className='NewSearch-container'>
-                <label className='NewSearch-label'>Search prompt</label>
-                <textarea className='NewSearch-input'
-                    placeholder='Enter the prompt of information you wish to research - the more specific your prompt, the more precise the resources.'
-                />
-            </div>
-
-            <div className='NewSearch-container'>
-                <label className='NewSearch-label'>Resource categories
-
-                </label>
-
-                <div className='NewSearch-tags-container'>
-                    {tagArray.map((r, i) => (
-                        <div
-                            key={i} className={r.active ? 'NewSearch-tag tag-active' : 'NewSearch-tag'}
-                            onClick={() => {
-                                setTagArray(prev =>
-                                    prev.map((item, idx) =>
-                                        idx === i ? { ...item, active: !item.active } : item
-                                    )
-                                );
-                            }}>
-                            {r.icon}
-                            <label className='NewSearch-checkmark-label'>{r.name}</label>
-                        </div>
-                    ))}
+            <div className='NewSearch-top-container'>
+                <div className='NewSearch-container'>
+                    <label className='NewSearch-label'>What are you looking for?</label>
+                    <textarea className='NewSearch-input'
+                        placeholder='Enter the prompt of resources you wish to research - the more specific your prompt, the more precise the resources.'
+                    />
                 </div>
-                <div className='NewSearch-separator' />
-                <label className='NewSearch-label'> Select vetting mode<LuInfo className='NewSearch-label-icon' onClick={() => showInfoOverlay(true)} /></label>
-                <select className='NewSearch-dropdown' name='search-options' >
-                    <option>Vetted resources only</option>
-                    <option>Un-vetted resources only</option>
-                    <option>All resources</option>
-                </select>
 
-                {/* Might take out - asking too much of user ?
-                    <div className='NewSearch-container'>
-                        <label className='NewSearch-label'>What is the purpose of this search?</label>
-                        <textarea className='NewSearch-input input-small'
-                            placeholder='Specifying what you need the resources for can help focus of the search. For example: I"m doing a phd thesis on molecular biology.'
-                        />
+                <div className='NewSearch-container'>
+                    <label className='NewSearch-label'>Resource categories
+
+                    </label>
+
+                    <div className='NewSearch-tags-container'>
+                        {tagArray.map((r, i) => (
+                            <div
+                                key={i} className={r.active ? 'NewSearch-tag tag-active' : 'NewSearch-tag'}
+                                onClick={() => {
+                                    setTagArray(prev =>
+                                        prev.map((item, idx) =>
+                                            idx === i ? { ...item, active: !item.active } : item
+                                        )
+                                    );
+                                }}>
+                                {r.icon}
+                                <label className='NewSearch-checkmark-label'>{r.name}</label>
+                            </div>
+                        ))}
                     </div>
-                */ }
-
-                <button className='NewSearch-submit'>Search</button>
+                    <div className='NewSearch-separator' />
+                    <label className='NewSearch-label'> Select vetting mode<LuInfo className='NewSearch-label-icon' onClick={() => showInfoOverlay(true)} /></label>
+                    <select className='NewSearch-dropdown' name='search-options' >
+                        <option>Vetted resources only</option>
+                        <option>Un-vetted resources only</option>
+                        <option>All resources</option>
+                    </select>
+                </div>
+                <button className='NewSearch-submit'><FaSearch /></button>
             </div>
         </div>
     )
@@ -117,10 +110,8 @@ export function NewProject() {
 
     return (
         <div className='ConsoleTabs'>
-            <h1 className='ConsoleTabs-title'>Create a new project</h1>
-            <div className='ConsoleTabs-separator' />
 
-            <div className='NewProject-form-container'>
+            <div className='NewProject-top-container'>
 
                 <div className='NewProject-container'>
                     <label className='NewProject-label'>Project name</label>
@@ -140,7 +131,7 @@ export function NewProject() {
                                     setTagArray(prev =>
                                         prev.map((item, idx) => ({
                                             ...item,
-                                            active: idx === i ? !item.active : false,
+                                            active: idx === i,
                                         }))
                                     );
                                 }}
@@ -162,7 +153,7 @@ export function NewProject() {
                                     setProjectColoursArray(prev =>
                                         prev.map((item, idx) => ({
                                             ...item,
-                                            active: idx === i, 
+                                            active: idx === i,
                                         }))
                                     );
                                 }}
@@ -175,9 +166,9 @@ export function NewProject() {
                             </div>
                         ))}
                     </div>
-                </div>
 
-                <button className='NewProject-submit'>Create project</button>
+                    <button className='NewProject-submit'>Create project</button>
+                </div>
             </div>
         </div>
     )
@@ -243,6 +234,14 @@ function OverlayInformation(props) {
                 </p>
 
             </div>
+        </div>
+    )
+}
+
+export function Settings() {
+    return (
+        <div>
+            <button onClick={() => toggleTheme()}>toggle dark/light</button>
         </div>
     )
 }
